@@ -1,13 +1,19 @@
 class VideogamesController < ApplicationController
   def index
+    redirect_to 'users/edit' unless current_user
     @videogames = Videogame.all
 
     render("videogames/index.html.erb")
   end
 
+  def hype
+    Hype.find_or_create_by(videogame_id: params[:videogame_id], user_id: current_user.id)
+    redirect_to :back
+  end
+
   def show
     @videogame = Videogame.find(params[:id])
-    @hyped_game = HypedGame.new
+    @myrating = Rating.find_or_create_by(videogame_id: params[:id], user_id: current_user.id)
 
     render("videogames/show.html.erb")
   end
