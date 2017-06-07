@@ -1,0 +1,28 @@
+<div class="page-header">
+  <h3>Hyped Game #<%= @hyped_game.id %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12 mb-2">
+    <dl class="dl-horizontal">
+      <dt>Videogame</dt>
+      <dd><%= @hyped_game.videogame_id %></dd>
+
+      <dt>User</dt>
+      <dd><%= @hyped_game.user_id %></dd>
+
+    </dl>
+
+    <div class="btn-group btn-group-justified">
+      <a href="/hyped_games" class="btn btn-primary">
+        Back
+      </a>
+      <a href="/hyped_games/<%= @hyped_game.id %>/edit" class="btn btn-warning">
+        Edit
+      </a>
+      <a href="/delete_hyped_game/<%= @hyped_game.id %>" class="btn btn-danger" rel="nofollow">
+        Delete
+      </a>
+    </div>
+  </div>
+</div>
