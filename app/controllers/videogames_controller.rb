@@ -1,6 +1,6 @@
 class VideogamesController < ApplicationController
   def index
-    redirect_to 'users/edit' unless current_user
+    redirect_to '/users/edit' and return unless current_user
     @videogames = Videogame.all.sort_by{|v| v.ratings.size }
 
     render("videogames/index.html.erb")
