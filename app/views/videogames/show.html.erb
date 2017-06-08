@@ -22,7 +22,7 @@
       <% if @videogame.hypes.size > 0 -%>
       <dt>Hyped By: </dt>
       <dd>
-	<%= @videogame.hypes.map{|h| h.user.username}.join(", ") -%>
+	<%= @videogame.hypes.map{|h| h.user.email}.join(", ") -%>
       </dd>
       <% end -%>
 
