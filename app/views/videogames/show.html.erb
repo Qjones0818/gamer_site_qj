@@ -1,5 +1,5 @@
 <div class="page-header">
-  <h3>Videogame #<%= @videogame.id %></h3>
+  <h3><%= @videogame.name %></h3>
 </div>
 
 <div class="row">
@@ -28,7 +28,17 @@
 
       <dt>Image url</dt>
       <div>
-	<img style="height:100px;" src="<%= @videogame.image_url %>" alt="">
+	<img style="height:400px;" src="<%= @videogame.image_url %>" alt="">
+    <form action="/hype" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+      <input type="hidden" id="videogame_id" name="videogame_id" placeholder="Videogame" class="form-control" value="<%= @videogame.id %>">
+
+      <button class="btn btn-success">
+        Hype it
+      </button>
+    </form>
+
       </div>
       
 
@@ -48,21 +58,8 @@
   </div>
 </div>
 
-<div class="page-header">
-  <h3>Hype Game</h3>
-</div>
-
 <div class="row">
   <div class="col-md-12">
-    <form action="/hype" method="post">
-      <!-- Hidden input for authenticity token to protect from forgery -->
-      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
-      <input type="hidden" id="videogame_id" name="videogame_id" placeholder="Videogame" class="form-control" value="<%= @videogame.id %>">
-
-      <button class="btn btn-success">
-        Hype it
-      </button>
-    </form>
   </div>
 </div>
 <script>
