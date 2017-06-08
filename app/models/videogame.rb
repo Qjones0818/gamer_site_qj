@@ -1,4 +1,8 @@
 class Videogame < ApplicationRecord
-  has_many :hyped_games, :dependent => :destroy
+  has_many :hypes
+  has_many :ratings
 
+  def average_rating
+    ratings.map{|r| r.score }.inject{ |sum, el| sum + el }.to_f / ratings.size
+  end
 end
