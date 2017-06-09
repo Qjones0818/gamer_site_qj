@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
+
+  resources :ratings, only: :update
   # Routes for the Hyped_game resource:
   # CREATE
   get "/hyped_games/new", :controller => "hyped_games", :action => "new"
-  post "/create_hyped_game", :controller => "hyped_games", :action => "create"
+  post "/hype", :controller => "videogames", :action => "hype"
+  
 
   # READ
   get "/hyped_games", :controller => "hyped_games", :action => "index"

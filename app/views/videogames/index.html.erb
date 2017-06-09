@@ -1,7 +1,7 @@
 <div class="page-header">
   <h1>
-    Videogames
-    <a href="/videogames/new" class="btn btn-lg btn-success">New Videogame</a>
+    Favorite Games?
+    <a href="/videogames/new" class="btn btn-lg btn-success">Add New</a>
   </h1>
 </div>
 
@@ -11,15 +11,15 @@
       <tr>
         <th>Title</th>
         <th>Description</th>
-        <th>Image url</th>
+        <th>Game Cover</th>
         <th>Actions</th>
       </tr>
 
       <% @videogames.each do |videogame| %>
       <tr>
-        <td><%= videogame.title %></td>
+        <td><h2><%= videogame.title %></h2></td>
         <td><%= videogame.description %></td>
-        <td><%= videogame.image_url %></td>
+        <td><img style="width:300px;" src ="<%= videogame.image_url %>"><td>
         <td>
           <a href="/videogames/<%= videogame.id %>" class="btn btn-primary">Show</a>
           <a href="/videogames/<%= videogame.id %>/edit" class="btn btn-warning">Edit</a>
