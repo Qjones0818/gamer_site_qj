@@ -1,5 +1,5 @@
 <div class="page-header">
-  <h3><%= @videogame.name %></h3>
+  <h3><%= @videogame.title %></h3>
 </div>
 
 <div class="row">
@@ -11,24 +11,24 @@
       <dt>Description</dt>
       <dd><%= @videogame.description %></dd>
 
-<dt>Average Rating </dt>
-<dd><div id="star"></div></dd>
+      <dt>Average Rating</dt>
+      <dd><div id="star"></div></dd>
 
-<dt> Your Rating </dt>
-<dd>
-  <div id="user_star"></div>
-</dd>
+      <dt>Your Rating</dt>
+      <dd>
+	<div id="user_star"></div>
+      </dd>
 
-<% if @videogame.hypes.size > 0 -%>
-  <dt>Hyped By: </dt>
-  <dd>
-    <%= @videogame.hypes.map{|h| h.user.username}.join(", ") -%>
-  </dd>
-  <% end -%>
+      <% if @videogame.hypes.size > 0 -%>
+      <dt>Hyped By: </dt>
+      <dd>
+	<%= @videogame.hypes.map{|h| h.user.email}.join(", ") -%>
+      </dd>
+      <% end -%>
 
-      <dt> Game Cover </dt>
-    <div>
-      <img style="height:400px;" src="<%= @videogame.image_url %>" alt="">
+      <dt>Game Cover</dt>
+      <div>
+	<img style="height:400px;" src="<%= @videogame.image_url %>" alt="">
     <form action="/hype" method="post">
       <!-- Hidden input for authenticity token to protect from forgery -->
       <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
@@ -39,8 +39,8 @@
       </button>
     </form>
 
-    </div>
-
+      </div>
+      
 
     </dl>
 
@@ -58,40 +58,27 @@
   </div>
 </div>
 
-<div class="page-header">
-  <h3>Hype Game</h3>
-</div>
-
 <div class="row">
   <div class="col-md-12">
-    <form action="/hype" method="post">
-      <!-- Hidden input for authenticity token to protect from forgery -->
-      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
-      <input type="hidden" id="videogame_id" name="videogame_id" placeholder="Videogame" class="form-control" value="<%= @videogame.id %>">
-
-      <button class="btn btn-success">
-        Hype it
-      </button>
-    </form>
   </div>
 </div>
 <script>
-  $('star').raty({
-    readOnly: true,
-    score: <%= @videogame.average_rating %>,
-    path: '/assets'
-  });
+    $('#star').raty({
+	    readOnly: true,
+		score: <%= @videogame.average_rating %>,
+		path: '/assets'
+		});
+    
 
-
-    $('#user_star').raty({
-      score: <%= @myrating.score %>.0,
-        path: '/assets',
-        click: function(score, evt) {
-        $.ajax({
-          url: '/ratings/' + <%= @myrating.id %>,
-          type: 'PATCH',
-          data: { score: score }
-        });
-        }
+  $('#user_star').raty({
+	score: <%= @myrating.score %>.0,
+	    path: '/assets',
+	    click: function(score, evt) {
+	    $.ajax({
+		    url: '/ratings/' + <%= @myrating.id %>,
+			type: 'PATCH',
+			data: { score: score }
+		});
+	}
     });
-    </script>
+</script>

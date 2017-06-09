@@ -19,23 +19,22 @@ ActiveRecord::Schema.define(version: 20170607214345) do
     t.datetime "updated_at",   null: false
   end
 
-create_table "hypes", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "videogame_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table "hypes", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "videogame_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
   create_table "ratings", force: :cascade do |t|
-      t.integer "videogame_id"
-      t.integer "user_id"
-      t.integer "score", default: 3
-      t.datetime "created_at", null: false
-      t.datetime "updated_at", null: false
-      t.index ["user_id"], name: "index_ratings_on_videogame_id"
-      t.index ["videogame_id"], name: "index_ratings_on_videogame_id"
-    end
-
+    t.integer  "videogame_id"
+    t.integer  "user_id"
+    t.integer  "score",        default: 3
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.index ["user_id"], name: "index_ratings_on_user_id"
+    t.index ["videogame_id"], name: "index_ratings_on_videogame_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
